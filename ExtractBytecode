@@ -1,0 +1,14 @@
+local ostring = string  
+local string = setmetatable({}, {
+    __index = function(self, index)
+        local Out = ostring[index]
+        if index == "gsub" then 
+            return function(...)
+                local OutS = Out(...)
+                print(OutS)
+                return OutS
+            end 
+        end 
+        return Out
+    end 
+})
